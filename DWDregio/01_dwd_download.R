@@ -1,7 +1,6 @@
-### show dwd regionalised data
+### set dwd regionalised data
 ### loop variables, download and describe
 ### save rda
-sessionInfo()
 
 # PACKAGES----------------------------------------------------------------
 if(!"stringr"%in%rownames(installed.packages()))install.packages("stringr",dependencies = TRUE);library(stringr);
