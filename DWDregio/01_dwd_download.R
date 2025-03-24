@@ -63,9 +63,9 @@ cc <-cc[is.na(cc[,1])==F,];
 levels(as.factor(cc[,1])); colnames(cc)[1] <-"res"; # resolution
 levels(as.factor(cc[,2])); colnames(cc)[2] <-"var"; # variable group
 tt <-c(1961:G$t_year); # tt <-c(2017:2020); # years of interest
-ll <-c("evaporation_fao","hyras_de","radolan");
-ll_nam <-c("et_fao","hyras","radolan");
-ii <-3;
+ll <-c("evaporation_fao","hyras_de");
+ll_nam <-c("et_fao","hyras");
+ii <-2;
 for(ii in 1:length(ll))
 {
   if(ll_nam[ii]%in%c("et_fao"))
@@ -94,15 +94,17 @@ for(ii in 1:length(ll))
     if(!dir.exists(G$d_temp)){dir.create(G$d_temp)}
     bb <-cc[cc$var%in%ll[ii],];
     mm <-levels(as.factor(bb$V3));
-    mm <-c("air_temperature_mean","precipitation")
-    kk <-2;
+    # mm <-c("air_temperature_mean","precipitation","humidity","radiation_global")
+    kk <-6;
     for(kk in 1:length(mm))
     {
       G$d_temp1 <-paste(G$d_temp,mm[kk],sep="/");
       if(!dir.exists(G$d_temp1)){dir.create(G$d_temp1)}
       gg <-bb[bb$V3%in%mm[kk],];
-      gg <-gg[str_detect(gg$V4,"v6-0_de.nc"),];  # nc files only
-      gg <-gg[str_detect(gg$V4,"1931_2020")==F,]; # nc files only
+      gg <-gg[str_detect(gg$V4,".nc"),];  # nc files only
+      if(mm[kk]%in%"radiation_global"){gg <-gg[str_detect(gg$V4,"v3-1_de.nc"),]}
+      if(!mm[kk]%in%"radiation_global"){gg <-gg[str_detect(gg$V4,"v6-0_de.nc"),]}
+      gg <-gg[str_detect(gg$V4,"1931_2020")==F,]; 
       jj <-1;
       for(jj in 1:length(tt))
       {
@@ -116,8 +118,7 @@ for(ii in 1:length(ll))
       }
     }
   }
-  if(ll_nam[ii]%in%c("radolan"))
- }
+}
 
 
 
