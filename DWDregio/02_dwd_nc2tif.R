@@ -100,7 +100,7 @@ for(ii in 1:length(ll))
     {
       aa <-paste(G$d_in2,ll[ii],sep="/");
       bb <-list.files(aa);
-      pp <-1;
+      pp <-5;
       for(pp in 1:length(bb))
       {
         ww <-paste(aa,bb[pp],sep="/");
