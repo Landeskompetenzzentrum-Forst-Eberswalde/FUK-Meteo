@@ -46,7 +46,7 @@ aa <-list.files(G$d_in1); aa;
 load(paste(G$d_in1,"00_read_geo-gadm_germany_region.rda",sep="/"));
 geo_ger <-gadm_germany_regions; rm("gadm_germany_regions"); st_bbox(geo_ger)
 geo_ger <-st_transform(geo_ger,G$g_epsg); st_bbox(geo_ger);
-geo_bb <-geo_ger[geo_ger$NAME_1%in%"Brandenburg",]
+geo_bb <-geo_ger[geo_ger$NAME_1%in%c("Brandenburg","Berlin"),]
 plot(geo_bb[,1]); summary(geo_bb$geometry); str(geo_bb);
 st_bbox(geo_bb);
 
