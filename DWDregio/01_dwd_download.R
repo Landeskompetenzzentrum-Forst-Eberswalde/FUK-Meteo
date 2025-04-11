@@ -95,7 +95,7 @@ for(ii in 1:length(ll))
     bb <-cc[cc$var%in%ll[ii],];
     mm <-levels(as.factor(bb$V3));
     # mm <-c("air_temperature_mean","precipitation","humidity","radiation_global")
-    kk <-6;
+    kk <-1;
     for(kk in 1:length(mm))
     {
       G$d_temp1 <-paste(G$d_temp,mm[kk],sep="/");
@@ -105,7 +105,7 @@ for(ii in 1:length(ll))
       if(mm[kk]%in%"radiation_global"){gg <-gg[str_detect(gg$V4,"v3-1_de.nc"),]}
       if(!mm[kk]%in%"radiation_global"){gg <-gg[str_detect(gg$V4,"v6-0_de.nc"),]}
       gg <-gg[str_detect(gg$V4,"1931_2020")==F,]; 
-      jj <-1;
+      jj <-39;
       for(jj in 1:length(tt))
       {
         dd <-gg[str_detect(gg$V4,as.character(tt[jj])),]; 

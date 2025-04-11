@@ -41,7 +41,7 @@ print(G)
 
 # READ geo ----------------------------------------------------------------------
 aa <-list.files(G$d_in1); aa;
-load(paste(G$d_in1,"00_read_geo-gadm_germany_region.rda",sep="/"));
+load(paste(G$d_in1,"gadm_germany_region.rda",sep="/"));
 geo_ger <-gadm_germany_regions; rm("gadm_germany_regions"); st_bbox(geo_ger)
 geo_ger <-st_transform(geo_ger,G$g_epsg); st_bbox(geo_ger);
 geo_bb <-geo_ger[geo_ger$NAME_1%in%c("Brandenburg","Berlin"),]
@@ -100,7 +100,7 @@ for(ii in 1:length(ll))
     {
       aa <-paste(G$d_in2,ll[ii],sep="/");
       bb <-list.files(aa);
-      pp <-5;
+      pp <-1;
       for(pp in 1:length(bb))
       {
         ww <-paste(aa,bb[pp],sep="/");
@@ -113,7 +113,7 @@ for(ii in 1:length(ll))
         dd <-unlist(str_split(cc,"_v")); dd <-dd[seq(1,length(dd),2)]
         yr0 <-str_sub(dd,-4); 
         cc <-cc[yr0%in%tt]; # year of intrest only;
-        jj <-1;
+        jj <-39;
         for(jj in 1:length(cc)) 
         {
           yr <-yr0[jj]; message(yr);
@@ -125,7 +125,7 @@ for(ii in 1:length(ll))
           ee <-readDWD(dd); 
           ### extract days and clip Brandenburg
           mm <-names(ee);
-          kk <-1;
+          kk <-265;
           for(kk in 1:length(mm))
           {
             print(paste(ll[ii],cc[jj],mm[kk],sep=" --- "));
